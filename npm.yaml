@@ -11,9 +11,8 @@ services:
     volumes:
       - ${NGINX_PROXY_MANAGER_DIR}/data:/data
       - ${NGINX_PROXY_MANAGER_DIR}/letsencrypt:/etc/letsencrypt
-      
-      
- networks:
+
+networks:
     default:
         name: "intranet"
         
