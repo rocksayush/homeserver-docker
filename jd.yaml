@@ -1,0 +1,23 @@
+version: "3.2"
+name : "jdownloader"
+
+services:
+   jdownloader:
+    image: ${JD_IMAGE}
+    container_name: jdownloader
+    restart: always
+    volumes:
+        - ${JD_CFG_DIR}:/config:rw
+#        - ${JD_DOWNLOADS_DIR}:/output:rw"
+#        - ${JD_A_DIR}:/animated:rw"
+#        - ${JD_B_DIR}:/bollywood:rw"
+#        - ${JD_H_DIR}:/hollywood:rw"
+#        - ${JD_T_DIR}:/tollywood:rw"
+
+    ports:
+        - ${JD_WEBUI_PORT}:5800
+        
+networks:
+    default:
+        name: "intranet"
+        external: true

@@ -1,0 +1,28 @@
+version: "3.2"
+name: "jellyfin"
+
+services:
+  jellyfin:
+    image: ${JELLYFIN_IMAGE}
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Kolkata/India
+
+    volumes:
+      - ${JELLYFIN_DATA_DIR}/config/:/config
+      - ${JELLYFIN_DATA_DIR}/cache:/cache
+      - ${JELLYFIN_MEDIA_DIR}:/media
+      - ${JELLYFIN_STUDY_DIR}:/study
+
+
+    restart: unless-stopped
+
+    network_mode: "host"
+
+    deploy:
+      replicas: 1
+
+
+

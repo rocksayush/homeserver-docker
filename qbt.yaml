@@ -1,0 +1,29 @@
+version: "3.1"
+name: "qbittorrent"
+services:
+  qbittorrent:
+    image: ${QBT_IMAGE}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - WEBUI_PORT=8080
+    volumes:
+      - ${QBT_CONFIG_DIR}:/config
+      - ${QBT_DOWNLOAD_DIR}:/downloads
+      - ${QBT_A_DIR}:/a
+      - ${QBT_B_DIR}:/b
+      - ${QBT_H_DIR}:/h
+      - ${QBT_T_DIR}:/T
+
+#    ports:
+#      - ${QBT_WEBUI_PORT}:8080
+#      - ${QBT_CONN_PORT}:6881
+#      - ${QBT_CONN_PORT}:6881/udp
+
+    restart: unless-stopped
+    
+networks:
+    default:
+        name: "intranet"
+        external: true

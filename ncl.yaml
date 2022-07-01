@@ -1,0 +1,24 @@
+version: "2.1"
+name: "nextcloud"
+services:
+  nextcloud:
+    image: ${NEXTCLOUD_IMAGE}
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - ${NEXTCLOUD_CONFIG}:/config
+      - ${NEXTCLOUD_DATA}:/data
+      - ${EXTERNAL}:/external
+      - ${REMOTE_DIRS}:/remote-drives
+
+#    ports:
+#      - ${NEXTCLOUD_HTTPS_PORT}:443
+
+    restart: unless-stopped
+
+networks:
+    default:
+        name: "intranet"
+        external: true
+        
+
